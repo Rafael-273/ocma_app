@@ -40,12 +40,12 @@ const Login = () => {
                 <FormContainer>
                     <Title>Login</Title>
                     <Input placeholder="Username" value={username}
-                      onChangeText={handleUsernameChange}/>
-                    <Input placeholder="Password" secureTextEntry={true} value={password} onChangeText={handlePasswordChange} />
+                      onChangeText={handleUsernameChange} placeholderTextColor="#ff"/>
+                    <Input placeholder="Password" secureTextEntry={true} value={password} onChangeText={handlePasswordChange} placeholderTextColor="#fff" />
                     <CustomButton backgroundColor="#FFCC29" onPress={handleLoginPress}>
                       <ButtonText>Login</ButtonText>
                     </CustomButton>
-                    <Span>2024 @OCMA</Span>
+                    <Span>2024 @DRIVESMART</Span>
                 </FormContainer>
             </LoginContainer>
         </StyledContainer>

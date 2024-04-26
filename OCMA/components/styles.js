@@ -5,7 +5,7 @@ import Constants from 'expo-constants'
 const StatusBarHeight = Constants.statusBarHeight;
 
 export const Colors = {
-    primary: "#FFCC29",
+    primary: "#1F2339",
     secondary: "#0A0A0A",
     tertiary: "#FFFDF9",
 }
@@ -36,7 +36,7 @@ export const Title = styled.Text`
     text-align: center;
     font-weight: bold;
     margin-bottom: 10px;
-    color: ${secondary};
+    color: #fff;
     padding: 10px;
 `
 
@@ -46,6 +46,7 @@ export const Span = styled.Text`
     font-weight: 400;
     margin-top: 45px;
     padding: 10px;
+    color: #fff;
 `
 
 export const LoginContainer = styled.View`
@@ -59,9 +60,6 @@ export const FormContainer = styled.View`
     width: 100%;
     height: 100%;
     padding: 20px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    background-color: #ffffff;
 `;
 
 export const Input = styled.TextInput`
@@ -70,14 +68,16 @@ export const Input = styled.TextInput`
     margin-bottom: 10px;
     padding: 15px 25px;
     border: 1px solid #ccc;
-    border-radius: 15px;
+    color: #ffffff;
+    background-color: transparent;
+    border-radius: 10px;
 `;
 
 export const CustomButton = styled.TouchableOpacity`
     width: 100%;
-    height: 40px;
-    background-color: ${primary};
-    border-radius: 15px;
+    height: 45px;
+    background-color: #149BA0;
+    border-radius: 10px;
     justify-content: center;
     align-items: center;
 `;
