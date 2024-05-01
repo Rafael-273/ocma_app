@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useNavigation } from '@react-navigation/native';
 
 import {
     StyledContainer,
@@ -9,11 +10,14 @@ import {
     CustomButton,
     ButtonText,
     FormContainer,
-    Title, 
+    Title,
+    RegisterButton, 
     Span
 } from '../components/styles'
 
 const Login = () => {
+    const navigation = useNavigation();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -45,7 +49,12 @@ const Login = () => {
                     <CustomButton backgroundColor="#FFCC29" onPress={handleLoginPress}>
                       <ButtonText>Login</ButtonText>
                     </CustomButton>
-                    <Span>2024 @OCMA</Span>
+                    <RegisterButton onPress={()=>{
+                        navigation.navigate("Register")
+                    }} backgroundColor="#FFCC29">
+                      <ButtonText>Cadastre-se</ButtonText>
+                    </RegisterButton>
+                    <Span>@OCMA 2024</Span>
                 </FormContainer>
             </LoginContainer>
         </StyledContainer>

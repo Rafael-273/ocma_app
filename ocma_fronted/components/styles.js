@@ -41,7 +41,7 @@ export const Title = styled.Text`
 `
 
 export const Span = styled.Text`
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     font-weight: 400;
     margin-top: 45px;
@@ -49,6 +49,13 @@ export const Span = styled.Text`
 `
 
 export const LoginContainer = styled.View`
+    flex: 1;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const RegisterContainer = styled.View`
     flex: 1;
     width: 100%;
     justify-content: center;
@@ -77,6 +84,17 @@ export const CustomButton = styled.TouchableOpacity`
     width: 100%;
     height: 40px;
     background-color: ${primary};
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const RegisterButton = styled.TouchableOpacity`
+    width: 100%;
+    height: 40px;
+    background-color: #D9582D;
+    margin-top: 5px;
+    margin-bottom: -15px;
     border-radius: 15px;
     justify-content: center;
     align-items: center;
