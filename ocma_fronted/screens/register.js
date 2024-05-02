@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Feather, Error } from '@expo/vector-icons';
 
 import {
   StyledContainer,
@@ -8,39 +9,50 @@ import {
   Input,
   CustomButton,
   ButtonText,
-  FormContainer,
+  FormRegisterContainer,
   Title,
-  Span,
+  Span
 } from "../components/styles";
 
 const Register = () => {
   const [name, setName] = useState("");
+  const [nameVerify, setNameVerify] = useState(false);
   const [email, setEmail] = useState("");
+  const [emailVerify, setemailVerify] = useState(false);
   const [mobile, setMobile] = useState("");
+  const [mobileVerify, setmobileVerify] = useState(false);
   const [password, setPassword] = useState("");
+  const [namepassword, setNamepassword] = useState(false);
 
-  const handleNameChange = (text) => {
-    setName(text);
-  };
+  function handleName(e) {
+    const nameVar = e.nativeEvent.text
+    setName(nameVar);
 
-  const handleEmailChange = (text) => {
-    setEmail(text);
-  };
+    if(nameVar.length > 1) {
+      setNameVerify(true)
+    }
+  }
 
-  const handleMobileChange = (text) => {
-    setMobile(text);
-  };
+  function handleEmail(e) {
+    const emailVar = e.nativeEvent.text;
+    setEmail(emailVar)
+  }
 
-  const handlePasswordChange = (text) => {
-    setPassword(text);
-  };
+  function handleMobile(e) {
+    const mobileVar = e.nativeEvent.text;
+    setMobile(mobileVar);
+  }
+
+  function handlePassword(e) {
+    const passwordVar = e.nativeEvent.text;
+    setPassword(passwordVar);
+  } 
 
   const handleRegisterPress = () => {
     console.log("Name:", name);
     console.log("Email:", email);
     console.log("Mobile:", mobile);
     console.log("Password:", password);
-    // Aqui você pode adicionar a lógica para enviar os dados para o backend e realizar o registro
   };
 
   return (
@@ -50,34 +62,46 @@ const Register = () => {
       </InnerContainer>
 
       <RegisterContainer>
-        <FormContainer>
+        <FormRegisterContainer>
           <Title>Register</Title>
           <Input
             placeholder="Name"
-            value={name}
-            onChangeText={handleNameChange}
+            onChange={e => handleName(e)}
           />
+          {/* {name.length < 1 ? null : nameVerify ? (
+                  <Feather
+                    name="check-circle"
+                    color="green"
+                    size={20}
+                    style={{ position: 'relative', top: -45, left: 285 }}
+                  />
+                ) : (
+                  <Error
+                    name="error"
+                    color="red"
+                    size={20}
+                    style={{ position: 'absolute', top: -45, left: 285 }}
+                  />
+          )} */}
           <Input
             placeholder="Email"
-            value={email}
-            onChangeText={handleEmailChange}
+            onChange={e => handleEmail(e)}
           />
           <Input
             placeholder="Telephone"
-            value={mobile}
-            onChangeText={handleMobileChange}
+            onChange={e => handleMobile(e)}
           />
           <Input
             placeholder="Password"
             secureTextEntry={true}
-            value={password}
-            onChangeText={handlePasswordChange}
+            onChange={e => handlePassword(e)}
+            secureTextEntry={true}
           />
           <CustomButton backgroundColor="#FFCC29" onPress={handleRegisterPress}>
             <ButtonText>Register</ButtonText>
           </CustomButton>
           <Span>2024 @OCMA</Span>
-        </FormContainer>
+        </FormRegisterContainer>
       </RegisterContainer>
     </StyledContainer>
   );

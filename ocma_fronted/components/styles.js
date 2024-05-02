@@ -71,6 +71,15 @@ export const FormContainer = styled.View`
     background-color: #ffffff;
 `;
 
+export const FormRegisterContainer = styled.View`
+    width: 100%;
+    height: 125%;
+    padding: 20px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background-color: #ffffff;
+`;
+
 export const Input = styled.TextInput`
     width: 100%;
     height: 50px;
@@ -84,7 +93,7 @@ export const CustomButton = styled.TouchableOpacity`
     width: 100%;
     height: 40px;
     background-color: ${primary};
-    border-radius: 15px;
+    border-radius: 10px;
     justify-content: center;
     align-items: center;
 `;
@@ -104,4 +113,8 @@ export const ButtonText = styled.Text`
     font-size: 17px;
     color: white;
     font-weight: bold;        
+`;
+
+export const ScrollView = styled.Text`
+  flex-grow: 1;
 `;
