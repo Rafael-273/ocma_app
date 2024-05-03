@@ -3,6 +3,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
+import { Alert } from "react-native";
 
 import {
     StyledContainer,
@@ -65,15 +66,17 @@ const Home = () => {
     const handleDeleteRestaurant = async (restaurantId) => {
         try {
             const token = await AsyncStorage.getItem('token');
-            await axios.delete(`http://192.168.1.10:5001/delete-restaurant/${restaurantId}`, {
+            axios
+            .delete(`http://192.168.1.10:5001/delete-restaurant/${restaurantId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            });
+            })
+
             Alert.alert("Restaurante deletado!");
             getData();
         } catch (error) {
-            Alert.alert("Erro ao deletar Restaurante!");
+            Alert.alert(error);
         }
     };
     
