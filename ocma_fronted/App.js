@@ -9,6 +9,7 @@ import Login from './screens/login';
 import Register from './screens/register';
 import Home from './screens/home';
 import RegisterRestaurant from './screens/registerRestaurant';
+import EditRestaurant from './screens/editRestaurant';
 
 export default function App() {
   useEffect(() => {
@@ -28,6 +29,7 @@ export default function App() {
         <Stack.Screen name="Register" component={Register}/>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="RegisterRestaurant" component={RegisterRestaurant} />
+        <Stack.Screen name="EditRestaurant" component={EditRestaurant} />
       </Stack.Navigator>
     </NavigationContainer>
   );

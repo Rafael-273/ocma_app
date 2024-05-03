@@ -113,6 +113,62 @@ app.get("/list-restaurants", async (req, res) => {
     }
 });
 
+app.get("/restaurant/:id", async (req, res) => {
+    const restaurantId = req.params.id;
+
+    try {
+        const restaurant = await Restaurant.findById(restaurantId);
+
+        if (!restaurant) {
+            return res.status(404).send({ error: "Restaurante não encontrado." });
+        }
+
+        res.send({ status: "ok", data: restaurant });
+    } catch (error) {
+        console.error("Erro ao buscar restaurante:", error);
+        res.status(500).send({ error: "Erro ao buscar restaurante. Tente novamente mais tarde." });
+    }
+});
+
+app.put("/edit-restaurant/:id", async (req, res) => {
+    const restaurantId = req.params.id;
+    const { name, location, description } = req.body;
+
+    try {
+        const updatedRestaurant = await Restaurant.findByIdAndUpdate(restaurantId, {
+            name: name,
+            location: location,
+            description: description,
+        }, { new: true });
+
+        if (!updatedRestaurant) {
+            return res.status(404).send({ error: "Restaurante não encontrado." });
+        }
+
+        res.send({ status: "ok", data: updatedRestaurant });
+    } catch (error) {
+        console.error("Erro ao editar restaurante:", error);
+        res.status(500).send({ error: "Erro ao editar restaurante. Tente novamente mais tarde." });
+    }
+});
+
+app.delete("/delete-restaurant/:id", async (req, res) => {
+    const restaurantId = req.params.id;
+
+    try {
+        const deletedRestaurant = await Restaurant.findByIdAndDelete(restaurantId);
+
+        if (!deletedRestaurant) {
+            return res.status(404).send({ error: "Restaurante não encontrado." });
+        }
+
+        res.send({ status: "ok", message: "Restaurante deletado com sucesso." });
+    } catch (error) {
+        console.error("Erro ao deletar restaurante:", error);
+        res.status(500).send({ error: "Erro ao deletar restaurante. Tente novamente mais tarde." });
+    }
+});
+
 app.listen(5001, ()=> {
     console.log('Node JS server started')
 });

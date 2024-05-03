@@ -17,20 +17,20 @@ const RegisterRestaurant = () => {
             name: name,
             location: location,
             description: description,
-            token: token
         };
 
-        axios.post("http://192.168.1.10:5001/register-restaurant", restaurantData)
-            .then(res => {
-                if (res.data.status === "ok") {
-                    alert("Restaurante registrado com sucesso!");
-                    navigation.navigate('Home');
-                }
-            })
-            .catch(error => {
-                console.error("Erro ao registrar restaurante:", error);
-                alert("Erro ao registrar restaurante. Tente novamente mais tarde.");
-            });
+        axios.post("http://192.168.1.10:5001/register-restaurant", restaurantData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            console.log("Restaurante registrado com sucesso!");
+            navigation.goBack();
+        })
+        .catch(error => {
+            console.error("Erro ao registrar restaurante:", error);
+        });
     };
 
     return (

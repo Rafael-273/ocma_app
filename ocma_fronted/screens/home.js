@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
@@ -24,7 +24,8 @@ import {
     RestaurantCard,
     LogoContainer,
     Logo,
-    RestaurantInfoContainer
+    RestaurantInfoContainer,
+    ButtonsContainer
 } from '../components/styles'
 
 const Home = () => {
@@ -35,7 +36,6 @@ const Home = () => {
 
     async function getData() {
         const token = await AsyncStorage.getItem('token');
-        console.log(token)
         axios
             .post("http://192.168.1.10:5001/user-data", {token:token})
             .then(res => {
@@ -55,6 +55,28 @@ const Home = () => {
     useEffect(() => {
         getData();
     }, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            getData();
+        }, [])
+    );
+
+    const handleDeleteRestaurant = async (restaurantId) => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+            await axios.delete(`http://192.168.1.10:5001/delete-restaurant/${restaurantId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            Alert.alert("Restaurante deletado!");
+            getData();
+        } catch (error) {
+            Alert.alert("Erro ao deletar Restaurante!");
+        }
+    };
+    
 
     return (
         <HomeContainer>
@@ -84,11 +106,18 @@ const Home = () => {
                             <Description>{restaurant.description}</Description>
                             <Location>{restaurant.location}</Location>
                         </RestaurantInfoContainer>
-                        <EditIconContainer>
-                            <Feather name="edit" size={24} color="black" onPress={()=>{
-                                navigation.navigate("RegisterRestaurant")
-                            }} />
-                        </EditIconContainer>
+                        <ButtonsContainer>
+                            <EditIconContainer>
+                                <Feather name="edit" size={24} color="black" onPress={()=>{
+                                    navigation.navigate("EditRestaurant",  { restaurantId: restaurant._id })
+                                }} />
+                            </EditIconContainer>
+                            <EditIconContainer>
+                                <Feather name="trash-2" size={24} color="black" onPress={()=>{
+                                    handleDeleteRestaurant(restaurant._id);
+                                }} />
+                            </EditIconContainer>                            
+                        </ButtonsContainer>
                     </RestaurantCard>
                 ))}
             </RestaurantContainer>

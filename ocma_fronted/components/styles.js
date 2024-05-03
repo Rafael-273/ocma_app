@@ -197,7 +197,7 @@ export const RestaurantContainer = styled.View`
 export const RestaurantCard = styled.View`
     flex-direction: row;
     align-items: center;
-    padding: 15px;
+    padding: 15px 20px 15px 15px;
     border-radius: 10px;
     border-width: 1px;
     border-color: #ccc;
@@ -237,9 +237,15 @@ export const Location = styled.Text`
     color: #666;
 `;
 
+export const ButtonsContainer = styled.TouchableOpacity`
+    justify-content: center;
+    align-items: center;
+`;
+
 export const EditIconContainer = styled.TouchableOpacity`
     width: 40px;
     height: 40px;
+    margin-top: 10px;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
