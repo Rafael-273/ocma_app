@@ -1,5 +1,8 @@
 import React, {useState} from "react";
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from "react-native";
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
     StyledContainer,
@@ -18,21 +21,25 @@ import {
 const Login = () => {
     const navigation = useNavigation();
 
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (text) => {
-        setUsername(text);
-    };
+    function handleSubmit() {
+        const userData = {
+            email: email,
+            password,
+        }
 
-    const handlePasswordChange = (text) => {
-        setPassword(text);
-    };
-
-    const handleLoginPress = () => {
-        console.log("Username:", username);
-        console.log("Password:", password);
-    };
+        axios
+            .post("http://192.168.1.10:5001/login-user", userData)
+            .then(res => {
+                if (res.data.status == "ok") {
+                    Alert.alert("Logado com Sucesso!");
+                    AsyncStorage.setItem("token", res.data.data);
+                    navigation.navigate('Home');
+                }
+            });
+    }
 
     return (
         <StyledContainer>
@@ -43,10 +50,9 @@ const Login = () => {
             <LoginContainer>
                 <FormContainer>
                     <Title>Login</Title>
-                    <Input placeholder="Username" value={username}
-                      onChangeText={handleUsernameChange}/>
-                    <Input placeholder="Password" secureTextEntry={true} value={password} onChangeText={handlePasswordChange} />
-                    <CustomButton backgroundColor="#FFCC29" onPress={handleLoginPress}>
+                    <Input placeholder="Email" value={email} onChange={e => setEmail(e.nativeEvent.text)}/>
+                    <Input placeholder="Password" secureTextEntry={true} value={password}  onChange={e => setPassword(e.nativeEvent.text)}/>
+                    <CustomButton backgroundColor="#FFCC29" onPress={() => handleSubmit()}>
                       <ButtonText>Login</ButtonText>
                     </CustomButton>
                     <RegisterButton onPress={()=>{

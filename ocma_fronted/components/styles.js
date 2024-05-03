@@ -18,8 +18,21 @@ export const StyledContainer = styled.View`
     background-color: ${primary};
 `
 
+export const HomeContainer = styled.View`
+    flex: 1;
+    width: 100%;
+    background-color: white;
+`
+
 export const InnerContainer = styled.View`
     flex: 1;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+`
+
+export const ContentContainer = styled.View`
+    padding: 30px 10px 0px 10px;
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -28,6 +41,12 @@ export const InnerContainer = styled.View`
 export const PageLogo = styled.Image`
     width: 50%;
     height: 50%;
+    resizeMode: contain;
+`
+
+export const HomeLogo = styled.Image`
+    width: 20%;
+    height: 100%;
     resizeMode: contain;
 `
 
@@ -40,11 +59,27 @@ export const Title = styled.Text`
     padding: 10px;
 `
 
+export const HomeTitle = styled.Text`
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: ${secondary};
+    padding: 10px;
+`
+
 export const Span = styled.Text`
     font-size: 12px;
     text-align: center;
     font-weight: 400;
     margin-top: 45px;
+    padding: 10px;
+`
+
+export const CustomSpan = styled.Text`
+    font-size: 12px;
+    text-align: center;
+    font-weight: 400;
+    margin-top: -20px;
     padding: 10px;
 `
 
@@ -101,7 +136,7 @@ export const CustomButton = styled.TouchableOpacity`
 export const RegisterButton = styled.TouchableOpacity`
     width: 100%;
     height: 40px;
-    background-color: #D9582D;
+    background-color: #1F1F1F;
     margin-top: 5px;
     margin-bottom: -15px;
     border-radius: 15px;
@@ -117,4 +152,101 @@ export const ButtonText = styled.Text`
 
 export const ScrollView = styled.Text`
   flex-grow: 1;
+`;
+
+export const UserContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    background-color: ${primary};
+`;
+
+export const UserName = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+`;
+
+export const UserEmail = styled.Text`
+    font-size: 14px;
+`;
+
+export const MenuContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 50px 20px 20px 20px;
+    background-color: #FFFFFF;
+    elevation: 7;
+`;
+
+export const MenuIcon = styled.View`
+    background-color: ${primary};
+    padding: 5px;
+    border-radius: 5px;
+`;
+
+export const RestaurantContainer = styled.View`
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+`;
+
+export const RestaurantCard = styled.View`
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: #ccc;
+    margin-bottom: 15px;
+`;
+
+export const LogoContainer = styled.View`
+    width: 25%;
+`;
+
+export const Logo = styled.Image`
+    width: 40%;
+    height: 40%;
+    aspect-ratio: 1;
+    border-radius: 10px;
+`;
+
+export const RestaurantInfoContainer = styled.View`
+    width: 63%;
+    padding: 10px 10px;
+`;
+
+export const RestaurantName = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+`;
+
+export const Description = styled.Text`
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+`;
+
+export const Location = styled.Text`
+    font-size: 14px;
+    color: #666;
+`;
+
+export const EditIconContainer = styled.TouchableOpacity`
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #FFCC29;
+`;
+
+export const EditIcon = styled.Image`
+    width: 20px;
+    height: 20px;
 `;

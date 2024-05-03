@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Feather, Error } from '@expo/vector-icons';
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import { Alert } from "react-native";
 
 import {
   StyledContainer,
@@ -33,6 +36,29 @@ const Register = () => {
     }
   }
 
+  const navigation = useNavigation();
+  function handleSubmit() {
+    const userData =  {
+      name: name,
+      email,
+      mobile, 
+      password
+    }
+
+    axios
+      .post("http://192.168.1.10:5001/register-user", userData)
+      .then(res => {
+        console.log(res.data)
+        if(res.data.status == 'ok'){
+          Alert.alert('Registrado com Sucesso!')
+          navigation.navigate('Login')
+        } else {
+          Alert.alert(JSON.stringify(res.data));
+        }
+      })
+      .catch(e => console.log(e));
+  }
+
   function handleEmail(e) {
     const emailVar = e.nativeEvent.text;
     setEmail(emailVar)
@@ -48,13 +74,6 @@ const Register = () => {
     setPassword(passwordVar);
   } 
 
-  const handleRegisterPress = () => {
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Mobile:", mobile);
-    console.log("Password:", password);
-  };
-
   return (
     <StyledContainer>
       <InnerContainer>
@@ -68,21 +87,6 @@ const Register = () => {
             placeholder="Name"
             onChange={e => handleName(e)}
           />
-          {/* {name.length < 1 ? null : nameVerify ? (
-                  <Feather
-                    name="check-circle"
-                    color="green"
-                    size={20}
-                    style={{ position: 'relative', top: -45, left: 285 }}
-                  />
-                ) : (
-                  <Error
-                    name="error"
-                    color="red"
-                    size={20}
-                    style={{ position: 'absolute', top: -45, left: 285 }}
-                  />
-          )} */}
           <Input
             placeholder="Email"
             onChange={e => handleEmail(e)}
@@ -97,7 +101,7 @@ const Register = () => {
             onChange={e => handlePassword(e)}
             secureTextEntry={true}
           />
-          <CustomButton backgroundColor="#FFCC29" onPress={handleRegisterPress}>
+          <CustomButton backgroundColor="#FFCC29" onPress={()=>handleSubmit()}>
             <ButtonText>Register</ButtonText>
           </CustomButton>
           <Span>2024 @OCMA</Span>
