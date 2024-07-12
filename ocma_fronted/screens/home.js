@@ -3,17 +3,15 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
-import { Alert } from "react-native";
+import { TouchableOpacity, Alert, View, Text } from 'react-native';
+
 
 import {
-    StyledContainer,
     HomeContainer,
     ContentContainer,
     HomeLogo,
     HomeTitle,
     CustomSpan,
-    UserContainer,
-    UserEmail,
     UserName,
     MenuContainer,
     MenuIcon,
@@ -79,7 +77,7 @@ const Home = () => {
             Alert.alert(error);
         }
     };
-    
+
 
     return (
         <HomeContainer>
@@ -100,7 +98,7 @@ const Home = () => {
 
             <RestaurantContainer>
                 {restaurants.map((restaurant, index) => (
-                    <RestaurantCard key={index}>
+                    <RestaurantCard>
                         <LogoContainer>
                             <Logo source={require('../assets/img/logo.png')} />
                         </LogoContainer>
@@ -119,7 +117,7 @@ const Home = () => {
                                 <Feather name="trash-2" size={24} color="black" onPress={()=>{
                                     handleDeleteRestaurant(restaurant._id);
                                 }} />
-                            </EditIconContainer>                            
+                            </EditIconContainer>
                         </ButtonsContainer>
                     </RestaurantCard>
                 ))}
